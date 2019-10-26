@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function TransitionsModal() {
+export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [data, setData] = React.useState({ hits: [] });
+  const [data, setData] = React.useState();
   React.useEffect(() => {
     const fetchData = async () => {
       const result = await Axios(
-        'https://hn.algolia.com/api/v1/search?query=redux',
+        props.API,
       );
       setData(result.data);
     };
@@ -36,8 +36,6 @@ export default function TransitionsModal() {
 
   const handleOpen = () => {
     setOpen(true);
-    Axios.get('https://opensky-network.org/api/flights/arrival?airport=EDDF&begin=1517227200&end=1517230800')
-    .then((res) => console.log(res.data));
   };
 
   const handleClose = () => {
@@ -66,9 +64,10 @@ export default function TransitionsModal() {
             <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">react-transition-group animates me.</p>
             <ul>
-      {data.hits.map(item => (
-        <li key={item.objectID}>
-          <a href={item.url}>{item.title}</a>
+      {data && data.map((item) => (
+        <li key={item.callsign}>
+            <p>{item.icao24}</p>
+          {/* <a href={item.url}>{item.title}</a> */}
         </li>
       ))}
     </ul>

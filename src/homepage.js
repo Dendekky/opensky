@@ -152,7 +152,8 @@ export default function Dashboard() {
             </Grid> */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                  <TransitionsModal />
+                  <TransitionsModal 
+                  API='https://opensky-network.org/api/flights/arrival?airport=EDDF&begin=1517227200&end=1517230800'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
