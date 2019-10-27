@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
@@ -22,16 +23,20 @@ const useStyles = makeStyles(theme => ({
 export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [data, setData] = React.useState();
+  const [allData, setData] = React.useState({ arrivalData:'', departureData:'' });
   React.useEffect(() => {
-    const fetchData = async () => {
-      const result = await Axios(
-        props.API,
+    const Data = async () => {
+      const arrival = await Axios.get(
+        props.ARRIVAL_API,
       );
-      setData(result.data);
+      const departure = await Axios.get(
+        props.DEPARTURE_API,
+      );
+      setData({ arrivalData: arrival.data, departureData: departure.data });
     };
-    fetchData();
+    Data();
   }, []);
+
 
 
   const handleOpen = () => {
@@ -45,7 +50,7 @@ export default function TransitionsModal(props) {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        react-transition-group
+        View flight
       </button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -61,14 +66,24 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
+          <h2 id="transition-modal-title">Arriving flights in the last 20 minutes</h2>
             <ul>
-      {data && data.map((item) => (
-        <li key={item.callsign}>
-            <p>{item.icao24}</p>
-          {/* <a href={item.url}>{item.title}</a> */}
-        </li>
+              {allData.arrivalData && allData.arrivalData.map((item) => (
+              <div key={item.callsign}>
+              <AirplanemodeActiveIcon />
+              <p>ICAO: {item.icao24}</p>
+              <p>Call Sign: {item.callsign}</p>
+        </div>
+      ))}
+    </ul>
+    <h2>Departing flights in the last 20 minutes</h2>
+    <ul>
+              {allData.departureData && allData.departureData.map((item) => (
+              <div key={item.callsign}>
+              <AirplanemodeActiveIcon />
+              <p>ICAO: {item.icao24}</p>
+              <p>Call Sign: {item.callsign}</p>
+        </div>
       ))}
     </ul>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,7 +11,6 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import TransitionsModal from './modal';
@@ -122,23 +122,12 @@ export default function Dashboard() {
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open)}>
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            OpenSky Flight Tracker
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            Welcome To Your Dashboard
+          </Typography>
         </Toolbar>
       </AppBar>
 
@@ -146,55 +135,95 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* <Grid item xs={12} md={8} lg={9}>
+          <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-              </Paper>
-            </Grid> */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                  <TransitionsModal 
-                  API='https://opensky-network.org/api/flights/arrival?airport=EDDF&begin=1517227200&end=1517230800'/>
+              <h2>Frankfurt Airport,	Frankfurt</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/arrival?airport=EDDF&begin=1517227200&end=1517227400'
+                  DEPARTURE_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/departure?airport=EDDF&begin=1517227200&end=1517227400'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>Schiphol Airport, Amsterdam</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://opensky-network.org/api/flights/arrival?airport=KATL&begin=1517227200&end=1517228300'
+                  DEPARTURE_API='https://opensky-network.org/api/flights/departure?airport=KATL&begin=1517227200&end=1517228300'
+                   />
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>O'Hare International Airport, Chicago</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://opensky-network.org/api/flights/arrival?airport=KORD&begin=1517227200&end=1517227350'
+                  DEPARTURE_API='https://opensky-network.org/api/flights/departure?airport=KORD&begin=1517227200&end=1517227350'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2> Hong Kong International Airport, Chek Lap Kok</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://opensky-network.org/api/flights/arrival?airport=VHHH&begin=1517227200&end=1517227500'
+                  DEPARTURE_API='https://opensky-network.org/api/flights/departure?airport=VHHH&begin=1517227200&end=1517227500'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2> JFK International Airport, New York</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://opensky-network.org/api/flights/arrival?airport=RKSI&begin=1517227200&end=1517227600'
+                  DEPARTURE_API='https://opensky-network.org/api/flights/departure?airport=RKSI&begin=1517227200&end=1517227600'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+                <h2>London's Heathrow Airport Airport, France</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://opensky-network.org/api/flights/arrival?airport=KLAX&begin=1517227200&end=1517229000'
+                  DEPARTURE_API='https://opensky-network.org/api/flights/departure?airport=KLAX&begin=1517227200&end=1517229000'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>Barcelona–El Prat Airport,	Barcelona</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/arrival?airport=LEBL&begin=1517227200&end=1517227800'
+                  DEPARTURE_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/departure?airport=LEBL&begin=1517227200&end=1517227800'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>Toronto Pearson Airport,	Mississauga</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/arrival?airport=CYYZ&begin=1517227200&end=1517229000'
+                  DEPARTURE_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/departure?airport=CYYZ&begin=1517227200&end=1517227800'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>Charles de Gaulle International Airport,	France</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/arrival?airport=LFPG&begin=1517227200&end=1517229000'
+                  DEPARTURE_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/departure?airport=LFPG&begin=1517227200&end=1517227800'/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+              <h2>Los Angeles International Airport, Los Angeles</h2>
+              <TransitionsModal 
+                  ARRIVAL_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/arrival?airport=EGLL&begin=1517227200&end=1517229000'
+                  DEPARTURE_API='https://USERNAME:PASSWORD@opensky-network.org/api/flights/departure?airport=EGLL&begin=1517227200&end=1517227800'/>
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              </Paper>
+            <Grid container>
+              <Grid item xs>
+                <Link to="/" variant="body2">
+                  Log in
+                </Link>
+              </Grid>
+            </Grid>
             </Grid>
           </Grid>
         </Container>
