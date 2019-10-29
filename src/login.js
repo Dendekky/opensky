@@ -65,7 +65,7 @@ export default function Login(props) {
   
   const handleSubmit = (evt) => {
       evt.preventDefault();
-      if ( name === login.name && password === login.password) {
+      if ( name === login.name && password == login.password) {
         props.history.push('/homepage')
       }
       else { alert('invalid credentials') }
