@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    // backgroundImage: 'url(https://source.unsplash.com/random?airplane)',
+    backgroundImage: 'url(https://source.unsplash.com/random?airplane)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
