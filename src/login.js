@@ -17,9 +17,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -31,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    // backgroundImage: 'url(https://source.unsplash.com/random?airplane)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -55,8 +53,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Login() {
+export default function Login(props) {
   const classes = useStyles();
+
+  const login = {
+    name: 'opensky@gmail.com',
+    password: 1234
+  }
+  const [name, setName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  
+  const handleSubmit = (evt) => {
+      evt.preventDefault();
+      if ( name === login.name && password === login.password) {
+        props.history.push('/homepage')
+      }
+      else { alert('invalid credentials') }
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -70,7 +83,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} Validate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -80,6 +93,9 @@ export default function Login() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              type="email"
+              value={name}
+              onChange={e => setName(e.target.value)}
               autoFocus
             />
             <TextField
@@ -91,6 +107,8 @@ export default function Login() {
               label="Password"
               type="password"
               id="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -106,13 +124,6 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/homepage" variant="body2">
-                  Homepage
-                </Link>
-              </Grid>
-            </Grid>
             <Box mt={5}>
               <Copyright />
             </Box>
