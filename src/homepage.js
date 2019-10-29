@@ -247,7 +247,7 @@ export default function Dashboard() {
             <Grid container>
               <Grid item xs>
                 <Link to="/" variant="body2">
-                  Log in
+                  Log out
                 </Link>
               </Grid>
             </Grid>
