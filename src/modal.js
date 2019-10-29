@@ -8,16 +8,19 @@ import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles(theme => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    display: 'inline-block',
+    textAlign: 'center',
     overflow: 'scroll',
+    width: '50%',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -36,7 +39,7 @@ export default function TransitionsModal(props) {
       setData({ arrivalData: arrival.data, departureData: departure.data });
     };
     Data();
-  }, []);
+  }, [props.ARRIVAL_API, props.DEPARTURE_API]);
 
 
 
@@ -67,26 +70,28 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <h2 id="transition-modal-title">Arriving flights in the last 20 minutes</h2>
-            <ul>
-              {allData.arrivalData && allData.arrivalData.map((item) => (
-              <div key={item.callsign}>
-              <AirplanemodeActiveIcon />
-              <p>ICAO: {item.icao24}</p>
-              <p>Call Sign: {item.callsign}</p>
-        </div>
-      ))}
-    </ul>
-    <h2>Departing flights in the last 20 minutes</h2>
-    <ul>
-              {allData.departureData && allData.departureData.map((item) => (
-              <div key={item.callsign}>
-              <AirplanemodeActiveIcon />
-              <p>ICAO: {item.icao24}</p>
-              <p>Call Sign: {item.callsign}</p>
-        </div>
-      ))}
-    </ul>
+            <h2>Arriving flights in the last 20 minutes</h2>
+              <ul>
+                {allData.arrivalData && allData.arrivalData.map((item) => (
+                  <div key={item.callsign}>
+                    <AirplanemodeActiveIcon />
+                    <p>ICAO24: {item.icao24}</p>
+                    <p>Flight Callsign: {item.callsign}</p>
+                    <p>Estimated Time of Arrival(Unix): {item.lastSeen}</p>
+                  </div>
+                ))}
+                </ul>
+            <h2>Departing flights in the last 20 minutes</h2>
+              <ul>
+                {allData.departureData && allData.departureData.map((item) => (
+                  <div key={item.callsign}>
+                    <AirplanemodeActiveIcon />
+                    <p>ICAO24: {item.icao24}</p>
+                    <p>Flight Callsign: {item.callsign}</p>
+                    <p>Estimated Time of Departure(Unix): {item.firstSeen}</p>
+                  </div>
+                ))}
+              </ul>
           </div>
         </Fade>
       </Modal>
