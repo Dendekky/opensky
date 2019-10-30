@@ -125,6 +125,11 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Welcome To Your Dashboard
           </Typography>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            <Link to="/" variant="body2">
+                  Log out
+            </Link>
+          </Typography>
         </Toolbar>
       </AppBar>
 
@@ -243,7 +248,7 @@ export default function Dashboard() {
               </div>
               </Paper>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
             <Grid container>
               <Grid item xs>
                 <Link to="/" variant="body2">
@@ -251,7 +256,7 @@ export default function Dashboard() {
                 </Link>
               </Grid>
             </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
         <Copyright />
