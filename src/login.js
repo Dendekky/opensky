@@ -57,15 +57,15 @@ export default function Login(props) {
   const classes = useStyles();
 
   const login = {
-    name: 'opensky@gmail.com',
-    password: 1234
+    name: 'username',
+    password: 'password'
   }
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
   
   const handleSubmit = (evt) => {
       evt.preventDefault();
-      if ( name === login.name && password == login.password) {
+      if ( name === login.name && password === login.password) {
         props.history.push('/homepage')
       }
       else { alert('invalid credentials') }
@@ -83,7 +83,7 @@ export default function Login(props) {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <form className={classes.form} onSubmit={handleSubmit} Validate>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -93,7 +93,6 @@ export default function Login(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
-              type="email"
               value={name}
               onChange={e => setName(e.target.value)}
               autoFocus
